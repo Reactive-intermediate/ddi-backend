@@ -1,0 +1,3 @@
+dist
+node_module
+src/i18n/i18n.type.ts

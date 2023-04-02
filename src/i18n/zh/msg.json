@@ -1,0 +1,9 @@
+{
+  "test": "這是中文",
+  "user": {
+    "register": {
+      "existed": "信箱已被註冊",
+      "success": "帳號註冊成功"
+    }
+  }
+}
