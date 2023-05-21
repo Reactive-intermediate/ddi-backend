@@ -1,3 +1,8 @@
-export { InsertUserDto } from './insert-dto';
+export { UserDto } from './user-dto';
 export { RegisterUserDto } from './register-dto';
-export { User } from './user-dto';
+export { LoginUserDto } from './login-dto';
+
+export enum Role {
+  GUEST = 'guest',
+  STUDENT = 'student',
+}

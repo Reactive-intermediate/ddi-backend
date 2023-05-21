@@ -2,22 +2,30 @@ import {
   Entity,
   Column,
   PrimaryGeneratedColumn,
-  CreateDateColumn,
-  UpdateDateColumn,
+  OneToMany,
   BeforeInsert,
+  ManyToOne,
 } from 'typeorm';
 import * as argon2 from 'argon2';
+import { Time } from './inheritance';
+import { UserRoleEntity } from './user-role.entity';
+import { SessionEntity } from './session.entity';
+import { VoteEntity } from './vote.entity';
+import { SchoolEntity } from './school.entity';
 
 @Entity({ name: 'user' })
-export class UserEntity {
+export class UserEntity extends Time {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
   @Column({ length: 16 })
   realName: string;
 
-  @Column({ length: 16 })
-  school: string;
+  @ManyToOne(() => SchoolEntity, (School) => School.school, {
+    nullable: false,
+    eager: true,
+  })
+  school: SchoolEntity;
 
   @Column({ length: 16 })
   studentID: string;
@@ -25,7 +33,7 @@ export class UserEntity {
   @Column({ length: 320, unique: true })
   email: string;
 
-  @Column({ length: 32 })
+  @Column({ length: 150 })
   password: string;
 
   @Column({ length: 16 })
@@ -37,18 +45,14 @@ export class UserEntity {
   @Column({ comment: '帳號是否被停用 ex: 密碼錯誤太多次', default: false })
   isLock: boolean;
 
-  @CreateDateColumn({
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP(6)',
-  })
-  createdAt: Date;
+  @OneToMany(() => UserRoleEntity, (role) => role.user, { eager: true })
+  role: UserRoleEntity[];
 
-  @UpdateDateColumn({
-    type: 'timestamp',
-    default: () => 'CURRENT_TIMESTAMP(6)',
-    onUpdate: 'CURRENT_TIMESTAMP(6)',
-  })
-  updatedAt: Date;
+  @OneToMany(() => VoteEntity, (vote) => vote.user)
+  vote: VoteEntity[];
+
+  @OneToMany(() => SessionEntity, (session) => session.user)
+  session: SessionEntity[];
 
   @BeforeInsert()
   async hashPassword() {

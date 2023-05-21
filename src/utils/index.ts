@@ -1,2 +1,2 @@
 export { ResponseData, ResponseError, ResponseSuccess } from './response';
-export { ENV } from './contents';
+export { ENV, HEADERS, TIME_MS, TIME_STRING } from './contents';

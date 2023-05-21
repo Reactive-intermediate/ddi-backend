@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  ddi-bakcend:
+    build: .
+    container_name: ddi-bakcend
+    
+
+networks:
+  ddi:
+    external: true

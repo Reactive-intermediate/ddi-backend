@@ -6,11 +6,13 @@ import {
   IsString,
   IsBoolean,
   IsDate,
+  IsEnum,
 } from 'class-validator';
 import { ApiProperty } from '@nestjs/swagger';
 import { Transform, TransformFnParams } from 'class-transformer';
+import { School } from '../school';
 
-export class User {
+export class UserDto {
   @ApiProperty()
   @IsNotEmpty()
   @IsString()
@@ -33,9 +35,8 @@ export class User {
     description: '學校名稱',
   })
   @IsNotEmpty()
-  @IsString()
-  @Length(2, 16)
-  school: string;
+  @IsEnum(School, { message: 'School invalid' })
+  school: School;
 
   @ApiProperty()
   @IsNotEmpty()

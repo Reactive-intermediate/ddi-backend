@@ -1,9 +1,9 @@
 import { IsNotEmpty, Length, IsString } from 'class-validator';
 import { Match } from '../../decorators';
 import { ApiProperty, PickType } from '@nestjs/swagger';
-import { User } from './user-dto';
+import { UserDto } from './user-dto';
 
-export class RegisterUserDto extends PickType(User, [
+export class RegisterUserDto extends PickType(UserDto, [
   'school',
   'email',
   'password',

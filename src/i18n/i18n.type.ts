@@ -6,7 +6,14 @@ export type I18nTranslations = {
         "test": string;
         "user": {
             "register": {
+                "password_different": string;
+                "school_not_found": string;
                 "existed": string;
+                "success": string;
+            };
+            "login": {
+                "account_not_register": string;
+                "password_error": string;
                 "success": string;
             };
         };

@@ -2,8 +2,15 @@
   "test": "這是中文",
   "user": {
     "register": {
+      "password_different": "確認密碼與密碼不一致",
+      "school_not_found": "學校輸入錯誤",
       "existed": "信箱已被註冊",
       "success": "帳號註冊成功"
+    },
+    "login": {
+      "account_not_register": "帳號未註冊",
+      "password_error": "密碼輸入錯誤",
+      "success": "登入成功"
     }
   }
 }
